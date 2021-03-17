@@ -1,10 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import { connect } from "react-redux";
-import { deploy } from "../lib/actions/contract";
 import { setValue, getValue } from "../lib/actions/storage";
 import "./App.css";
 
-const App = ({ contract, storageValue, isLoading, deploy, set, get }) => {
+const App = ({ contract, storageValue, isLoading, set, get }) => {
   const inputRef = useRef();
   const [localValue, setLocalValue] = useState(null);
 
@@ -15,9 +14,9 @@ const App = ({ contract, storageValue, isLoading, deploy, set, get }) => {
       return false;
     }
     set(localValue);
-    // inputRef.current.value = null;
+    inputRef.current.value = null;
   };
-  useEffect(() => deploy(), []);
+
   useEffect(() => get(), [get]);
 
   return (
@@ -29,27 +28,28 @@ const App = ({ contract, storageValue, isLoading, deploy, set, get }) => {
 
       <p>
         {!!contract
-          ? "Your contracts compiled and migrated successfully"
+          ? "Your contracts compiled and migrated successfully "
           : "Try to deploy your contract !"}
+        {!!contract && <span>at address : {contract.options.address}</span>}
       </p>
-      {!!contract && <p>contract's address : {contract.options.address}</p>}
+
+      <p>Try changing the value stored on your smart contract :</p>
+      <form onSubmit={handleOnSubmit}>
+        <input
+          type="number"
+          name="inputValue"
+          defaultValue={localValue}
+          onChange={handleOnChange}
+          placeholder="enter value here"
+          ref={inputRef}
+        ></input>
+        &nbsp;
+        <button type="submit">Submit</button>
+      </form>
+      <br />
       <p>
-        Try changing the value stored on your smart contract :{" "}
-        <form onSubmit={handleOnSubmit}>
-          <input
-            type="number"
-            name="inputValue"
-            defaultValue={localValue}
-            onChange={handleOnChange}
-            placeholder="enter value here"
-            ref={inputRef}
-          ></input>{" "}
-          <button type="submit">Submit</button>
-        </form>
-      </p>
-      <div>
         The stored value is: {isLoading ? "data is loading..." : storageValue}
-      </div>
+      </p>
     </div>
   );
 };
@@ -64,7 +64,6 @@ const mapStateToProps = ({ storage, contract }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  deploy: () => dispatch(deploy()),
   set: (value) => dispatch(setValue(value)),
   get: () => dispatch(getValue()),
 });
