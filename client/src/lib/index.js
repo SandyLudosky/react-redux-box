@@ -1,9 +1,10 @@
 import React from "react";
 import { render } from "react-dom";
-import store from "./lib/store";
-import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
-import App from "./app";
+import { Provider } from "react-redux";
+
+import store from "./lib/store";
+import App from "./components/App";
 
 const rootReactElement = (
   <BrowserRouter>
@@ -12,4 +13,5 @@ const rootReactElement = (
     </Provider>
   </BrowserRouter>
 );
-render(rootReactElement, document.getElementById("root"));
+const target = document.getElementById("root");
+render(rootReactElement, target);
