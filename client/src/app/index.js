@@ -22,17 +22,16 @@ const App = ({ contract, storageValue, isLoading, set, get }) => {
   return (
     <div className="App">
       <h2>Smart Contract Example with React &amp; Redux</h2>
-      <hr />
-      <h1>Good to Go!</h1>
-      <p>Your Truffle Box is installed and ready.</p>
-
       <p>
         {!!contract
           ? "Your contracts compiled and migrated successfully "
           : "Try to deploy your contract !"}
         {!!contract && <span>at address : {contract.options.address}</span>}
       </p>
+      <hr />
 
+      <h1>Good to Go!</h1>
+      <p>Your Truffle Box is installed and ready.</p>
       <p>Try changing the value stored on your smart contract :</p>
       <form onSubmit={handleOnSubmit}>
         <input
@@ -46,7 +45,6 @@ const App = ({ contract, storageValue, isLoading, set, get }) => {
         &nbsp;
         <button type="submit">Submit</button>
       </form>
-      <br />
       <p>
         The stored value is: {isLoading ? "data is loading..." : storageValue}
       </p>
@@ -62,7 +60,6 @@ const mapStateToProps = ({ storage, contract }) => {
     contract: contract.instance,
   };
 };
-
 const mapDispatchToProps = (dispatch) => ({
   set: (value) => dispatch(setValue(value)),
   get: () => dispatch(getValue()),
