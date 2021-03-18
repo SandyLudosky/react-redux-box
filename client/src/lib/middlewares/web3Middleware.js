@@ -4,7 +4,6 @@ const connectWeb3 = new Promise(async (resolve) => {
   const web3 = await getWeb3();
   resolve(web3);
 });
-
 const connectBlockchain = (web3, contract) =>
   new Promise(async (resolve, reject) => {
     try {
@@ -23,7 +22,7 @@ const connectBlockchain = (web3, contract) =>
     }
   });
 
-function createWeb3Middleware(contract) {
+const createWeb3Middleware = (contract) => {
   return ({ dispatch, getState }) => (next) => (action) => {
     connectWeb3
       .then((web3) => connectBlockchain(web3, contract), console.error)
@@ -36,8 +35,8 @@ function createWeb3Middleware(contract) {
           });
         }
         return next(action);
-      });
+      }, console.error);
   };
-}
-const web3Provider = (contract) => createWeb3Middleware(contract);
-export default web3Provider;
+};
+
+export default (contract) => createWeb3Middleware(contract);

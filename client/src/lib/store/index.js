@@ -1,6 +1,6 @@
 import { createStore, compose, applyMiddleware } from "redux";
 import rootReducer from "../reducers";
-import web3Provider from "../middlewares/web3Provider";
+import web3Middleware from "../middlewares/web3Middleware";
 import SimpleStorage from "../../contracts/SimpleStorage.json";
 
 const composeEnhancer =
@@ -9,9 +9,5 @@ const composeEnhancer =
     traceLimit: 25,
   }) || compose;
 
-const store = createStore(
-  rootReducer,
-  composeEnhancer(applyMiddleware(web3Provider(SimpleStorage)))
-);
-console.log(store);
-export default store;
+const middlewares = applyMiddleware(web3Middleware(SimpleStorage));
+export default createStore(rootReducer, composeEnhancer(middlewares));
