@@ -40,5 +40,4 @@ function createWeb3Middleware(contract) {
   };
 }
 const web3Provider = (contract) => createWeb3Middleware(contract);
-// web3Provider.withExtraArgument = createWeb3Middleware;
 export default web3Provider;
