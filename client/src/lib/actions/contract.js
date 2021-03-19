@@ -1,11 +1,10 @@
 import { DEPLOY } from "./types";
 
 export const deploy = () => {
-  return (dispatch, _, { instance, accounts }) => {
-    console.log(instance);
+  return (dispatch, _, { instances, accounts }) => {
     dispatch({
       type: DEPLOY,
-      payload: { instance, accounts, admin: accounts[0] },
+      payload: { instances, accounts, admin: accounts[0] },
     });
   };
 };

@@ -45,22 +45,22 @@ const setValueError = (err) => {
   };
 };
 export const setValue = (value) => {
-  return (dispatch, _, { instance, accounts }) => {
+  return (dispatch, _, { instances: { SimpleStorage }, accounts }) => {
     dispatch(setValuePending());
-    instance.methods
+    SimpleStorage.methods
       .set(value)
       .send({ from: accounts[0] })
       .then((result) => {
         dispatch(setValueSuccess(!result.status));
         dispatch(getValue());
       })
-      .catch(console.errore);
+      .catch(console.error);
   };
 };
 export const getValue = () => {
-  return (dispatch, _, { instance }) => {
+  return (dispatch, _, { instances: { SimpleStorage } }) => {
     dispatch(getValuePending());
-    instance.methods
+    SimpleStorage.methods
       .get()
       .call()
       .then((result) => dispatch(getValueSuccess(result)))

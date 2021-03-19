@@ -9,7 +9,7 @@ import {
 } from "../actions/types";
 
 export const initialState = {
-  instance: null,
+  instances: null,
   accounts: [],
   admin: null,
 };

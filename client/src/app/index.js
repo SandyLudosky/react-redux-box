@@ -57,7 +57,7 @@ const mapStateToProps = ({ storage, contract }) => {
     storageValue: storage.storageValue,
     isLoading: storage.isLoading,
     inputValue: storage.inputValue,
-    contract: contract.instance,
+    contract: contract.instances.SimpleStorage,
   };
 };
 const mapDispatchToProps = (dispatch) => ({
