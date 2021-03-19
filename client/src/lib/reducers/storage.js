@@ -12,6 +12,7 @@ export const initialState = {
   instance: null,
   storageValue: 0,
   isPending: false,
+  event: null,
 };
 
 const storage = (state = initialState, { type, payload }) => {

@@ -13,6 +13,7 @@ const App = ({
   setValue,
   getValue,
   readMessage,
+  event,
 }) => {
   const inputRef = useRef();
   const [localValue, setLocalValue] = useState(null);
@@ -27,8 +28,14 @@ const App = ({
     inputRef.current.value = null;
   };
 
+  useEffect(() => {
+    if (event?.event === "Set") {
+      alert("new value added");
+    }
+  }, [event?.transactionHash, event?.event]);
   useEffect(() => getValue(), [getValue]);
   useEffect(() => readMessage(), [readMessage]);
+
   return (
     <div className="App" style={{ margin: "100px auto 0 auto", width: "60%" }}>
       <div style={{ marginBottom: 50, borderBottom: "1px solid #ccc" }}>
@@ -73,13 +80,14 @@ const App = ({
   );
 };
 
-const mapStateToProps = ({ storage, greetings }) => {
+const mapStateToProps = ({ storage, greetings, contracts }) => {
   return {
     storageValue: storage.storageValue,
     isStorageValueLoading: storage.isLoading,
     welcomeMessage: greetings.message,
     isGreetingMessagePending: greetings.isPending,
     instance: storage.instance,
+    event: contracts.event,
   };
 };
 const mapDispatchToProps = (dispatch) => ({

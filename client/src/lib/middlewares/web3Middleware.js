@@ -33,6 +33,26 @@ const connectBlockchain = (web3, contracts) =>
     }
   });
 
+const subscribeEvents = (data, dispatch) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      Object.values(data.instances).map((contract) => {
+        contract.events.allEvents({}, (error, event) => {
+          if (error) {
+            throw error;
+          }
+          dispatch({
+            type: "LOG_EVENT",
+            payload: event,
+          });
+        });
+        return resolve(data);
+      });
+    } catch (err) {
+      reject(err);
+    }
+  });
+
 const createWeb3Middleware = (contracts) => {
   if (!contracts.length) {
     throw Error("contracts are missing");
@@ -40,16 +60,18 @@ const createWeb3Middleware = (contracts) => {
   return ({ dispatch, getState }) => (next) => (action) => {
     connectWeb3
       .then((web3) => connectBlockchain(web3, contracts), handleErrors)
+      .then((data) => subscribeEvents(data, dispatch), handleErrors)
       .then(({ web3, instances, accounts }) => {
         if (typeof action === "function") {
           return action(dispatch, getState, {
             web3,
             accounts,
             instances,
+            admin: accounts[0],
           });
         }
         return next(action);
-      }, handleErrors);
+      }, console.error);
   };
 };
 const Web3M = (contract) => createWeb3Middleware(contract);

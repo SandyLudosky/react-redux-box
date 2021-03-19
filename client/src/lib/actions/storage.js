@@ -44,6 +44,7 @@ const setValueError = (err) => {
     payload: { error: err },
   };
 };
+
 export const setValue = (value) => {
   return (dispatch, _, { instances: { SimpleStorage }, admin }) => {
     dispatch(setValuePending());
