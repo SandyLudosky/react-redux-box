@@ -5,7 +5,7 @@ import { readMessage } from "../lib/actions/greetings";
 import "./App.css";
 
 const App = ({
-  contract,
+  instance,
   isStorageValueLoading,
   isGreetingMessagePending,
   storageValue,
@@ -38,13 +38,13 @@ const App = ({
             : welcomeMessage}
         </h1>
         <p>
-          {!!contract
+          {!!instance
             ? "Your contracts compiled and migrated successfully "
             : "Try to deploy your contract !"}
-          {!!contract && (
+          {!!instance && (
             <>
               <br />
-              <span>at address : {contract.options.address}</span>
+              <span>at address : {instance.options.address}</span>
             </>
           )}
         </p>
@@ -73,13 +73,13 @@ const App = ({
   );
 };
 
-const mapStateToProps = ({ storage, contracts, greetings }) => {
+const mapStateToProps = ({ storage, greetings }) => {
   return {
     storageValue: storage.storageValue,
     isStorageValueLoading: storage.isLoading,
     welcomeMessage: greetings.message,
     isGreetingMessagePending: greetings.isPending,
-    contract: contracts.instances?.SimpleStorage,
+    instance: storage.instance,
   };
 };
 const mapDispatchToProps = (dispatch) => ({

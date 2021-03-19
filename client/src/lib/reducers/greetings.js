@@ -5,9 +5,11 @@ import {
   READ_MESSAGE_PENDING,
   READ_MESSAGE_SUCCESS,
   READ_MESSAGE_ERROR,
+  DEPLOY,
 } from "../actions/types";
 
 export const initialState = {
+  instance: null,
   isPending: false,
   message: null,
   error: null,
@@ -15,6 +17,11 @@ export const initialState = {
 
 const greetings = (state = initialState, { type, payload }) => {
   switch (type) {
+    case DEPLOY:
+      return {
+        ...state,
+        instance: payload.greetings.instance,
+      };
     case WRITE_MESSAGE_PENDING:
       return {
         ...state,

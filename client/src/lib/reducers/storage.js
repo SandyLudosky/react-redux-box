@@ -5,15 +5,22 @@ import {
   GET_VALUE_ERROR,
   GET_VALUE_SUCCESS,
   GET_VALUE_PENDING,
+  DEPLOY,
 } from "../actions/types";
 
 export const initialState = {
+  instance: null,
   storageValue: 0,
   isPending: false,
 };
 
 const storage = (state = initialState, { type, payload }) => {
   switch (type) {
+    case DEPLOY:
+      return {
+        ...state,
+        instance: payload.storage.instance,
+      };
     case SET_VALUE_PENDING:
       return {
         ...state,

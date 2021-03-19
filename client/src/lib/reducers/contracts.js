@@ -1,7 +1,6 @@
 import { DEPLOY } from "../actions/types";
 
 export const initialState = {
-  instances: null,
   accounts: [],
   admin: null,
 };
@@ -9,7 +8,10 @@ export const initialState = {
 const contracts = (state = initialState, { type, payload }) => {
   switch (type) {
     case DEPLOY:
-      return { ...payload };
+      return {
+        admin: payload.admin,
+        accounts: payload.accounts,
+      };
     default:
       return state;
   }
