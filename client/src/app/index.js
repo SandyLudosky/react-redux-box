@@ -87,5 +87,4 @@ const mapDispatchToProps = (dispatch) => ({
   getValue: () => dispatch(getValue()),
   readMessage: () => dispatch(readMessage()),
 });
-
 export default connect(mapStateToProps, mapDispatchToProps)(App);

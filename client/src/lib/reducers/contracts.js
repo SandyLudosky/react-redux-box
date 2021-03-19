@@ -1,12 +1,4 @@
-import {
-  SET_VALUE_ERROR,
-  SET_VALUE_SUCCESS,
-  SET_VALUE_PENDING,
-  GET_VALUE_ERROR,
-  GET_VALUE_SUCCESS,
-  GET_VALUE_PENDING,
-  DEPLOY,
-} from "../actions/types";
+import { DEPLOY } from "../actions/types";
 
 export const initialState = {
   instances: null,

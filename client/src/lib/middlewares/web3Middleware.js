@@ -33,10 +33,13 @@ const connectBlockchain = (web3, contracts) =>
     }
   });
 
-const createWeb3Middleware = (contract) => {
+const createWeb3Middleware = (contracts) => {
+  if (!contracts.length) {
+    throw Error("contracts are missing");
+  }
   return ({ dispatch, getState }) => (next) => (action) => {
     connectWeb3
-      .then((web3) => connectBlockchain(web3, contract), console.error)
+      .then((web3) => connectBlockchain(web3, contracts), console.error)
       .then(({ web3, instances, accounts }) => {
         if (typeof action === "function") {
           return action(dispatch, getState, {

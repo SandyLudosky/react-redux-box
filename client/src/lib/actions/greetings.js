@@ -45,9 +45,9 @@ const readMessageError = (error) => {
   };
 };
 export const setMessage = (message) => {
-  return (dispatch, _, { instances: { Greeting }, admin }) => {
+  return (dispatch, _, { instances: { Greetings }, admin }) => {
     dispatch(writeMessagePending());
-    Greeting.methods
+    Greetings.methods
       .set(message)
       .send({ from: admin })
       .then((result) => {
@@ -59,9 +59,9 @@ export const setMessage = (message) => {
 };
 
 export const readMessage = () => {
-  return (dispatch, _, { instances: { Greeting } }) => {
+  return (dispatch, _, { instances: { Greetings } }) => {
     dispatch(readMessagePending());
-    Greeting.methods
+    Greetings.methods
       .read()
       .call()
       .then((result) => dispatch(readMessageSuccess(result)))

@@ -1,4 +1,4 @@
 import SimpleStorage from "./SimpleStorage.json";
-import Greeting from "./Greeting.json";
+import Greetings from "./Greetings.json";
 
-export { SimpleStorage, Greeting };
+export { SimpleStorage, Greetings };
