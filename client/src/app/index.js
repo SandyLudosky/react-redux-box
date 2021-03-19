@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { connect } from "react-redux";
 import { setValue, getValue } from "../lib/actions/storage";
-import { readMessage } from "../lib/actions/greeting";
+import { readMessage } from "../lib/actions/greetings";
 import "./App.css";
 
 const App = ({
@@ -73,13 +73,13 @@ const App = ({
   );
 };
 
-const mapStateToProps = ({ storage, contract, greeting }) => {
+const mapStateToProps = ({ storage, contracts, greetings }) => {
   return {
     storageValue: storage.storageValue,
     isStorageValueLoading: storage.isLoading,
-    welcomeMessage: greeting.message,
-    isGreetingMessagePending: greeting.isPending,
-    contract: contract.instances?.SimpleStorage,
+    welcomeMessage: greetings.message,
+    isGreetingMessagePending: greetings.isPending,
+    contract: contracts.instances?.SimpleStorage,
   };
 };
 const mapDispatchToProps = (dispatch) => ({

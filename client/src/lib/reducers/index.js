@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
-import contract from "./contract";
+import contracts from "./contracts";
 import storage from "./storage";
-import greeting from "./greeting";
+import greetings from "./greetings";
 
 export default combineReducers({
   storage,
-  contract,
-  greeting,
+  contracts,
+  greetings,
   /* additional reducers here */
 });

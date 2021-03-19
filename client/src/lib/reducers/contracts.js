@@ -14,7 +14,7 @@ export const initialState = {
   admin: null,
 };
 
-const storage = (state = initialState, { type, payload }) => {
+const contracts = (state = initialState, { type, payload }) => {
   switch (type) {
     case DEPLOY:
       return { ...payload };
@@ -22,5 +22,4 @@ const storage = (state = initialState, { type, payload }) => {
       return state;
   }
 };
-
-export default storage;
+export default contracts;

@@ -13,7 +13,7 @@ export const initialState = {
   error: null,
 };
 
-const storage = (state = initialState, { type, payload }) => {
+const greetings = (state = initialState, { type, payload }) => {
   switch (type) {
     case WRITE_MESSAGE_PENDING:
       return {
@@ -50,4 +50,4 @@ const storage = (state = initialState, { type, payload }) => {
   }
 };
 
-export default storage;
+export default greetings;
