@@ -45,16 +45,16 @@ const setValueError = (err) => {
   };
 };
 export const setValue = (value) => {
-  return (dispatch, _, { instances: { SimpleStorage }, accounts }) => {
+  return (dispatch, _, { instances: { SimpleStorage }, admin }) => {
     dispatch(setValuePending());
     SimpleStorage.methods
       .set(value)
-      .send({ from: accounts[0] })
+      .send({ from: admin })
       .then((result) => {
         dispatch(setValueSuccess(!result.status));
         dispatch(getValue());
       })
-      .catch(console.error);
+      .catch(setValueError);
   };
 };
 export const getValue = () => {

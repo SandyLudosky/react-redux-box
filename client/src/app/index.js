@@ -1,9 +1,19 @@
 import React, { useEffect, useState, useRef } from "react";
 import { connect } from "react-redux";
 import { setValue, getValue } from "../lib/actions/storage";
+import { readMessage } from "../lib/actions/greeting";
 import "./App.css";
 
-const App = ({ contract, storageValue, isLoading, set, get }) => {
+const App = ({
+  contract,
+  isStorageValueLoading,
+  isGreetingMessagePending,
+  storageValue,
+  welcomeMessage,
+  setValue,
+  getValue,
+  readMessage,
+}) => {
   const inputRef = useRef();
   const [localValue, setLocalValue] = useState(null);
 
@@ -13,56 +23,69 @@ const App = ({ contract, storageValue, isLoading, set, get }) => {
     if (!localValue) {
       return false;
     }
-    set(localValue);
+    setValue(localValue);
     inputRef.current.value = null;
   };
 
-  useEffect(() => get(), [get]);
-
+  useEffect(() => getValue(), [getValue]);
+  useEffect(() => readMessage(), [getValue]);
   return (
-    <div className="App">
-      <h2>Smart Contract Example with React &amp; Redux</h2>
-      <p>
-        {!!contract
-          ? "Your contracts compiled and migrated successfully "
-          : "Try to deploy your contract !"}
-        {!!contract && <span>at address : {contract.options.address}</span>}
-      </p>
-      <hr />
+    <div className="App" style={{ margin: "100px auto 0 auto", width: "60%" }}>
+      <div style={{ marginBottom: 50, borderBottom: "1px solid #ccc" }}>
+        <h1>
+          {isGreetingMessagePending
+            ? "Smart Contract Example with React &amp; Redux"
+            : welcomeMessage}
+        </h1>
+        <p>
+          {!!contract
+            ? "Your contracts compiled and migrated successfully "
+            : "Try to deploy your contract !"}
+          {!!contract && (
+            <>
+              <br />
+              <span>at address : {contract.options.address}</span>
+            </>
+          )}
+        </p>
+      </div>
 
-      <h1>Good to Go!</h1>
-      <p>Your Truffle Box is installed and ready.</p>
-      <p>Try changing the value stored on your smart contract :</p>
-      <form onSubmit={handleOnSubmit}>
-        <input
-          type="number"
-          name="inputValue"
-          defaultValue={localValue}
-          onChange={handleOnChange}
-          placeholder="enter value here"
-          ref={inputRef}
-        ></input>
-        &nbsp;
-        <button type="submit">Submit</button>
-      </form>
-      <p>
-        The stored value is: {isLoading ? "data is loading..." : storageValue}
-      </p>
+      <div style={{ marginTop: 50 }}>
+        <p>Try changing the value stored on your smart contract :</p>
+        <form onSubmit={handleOnSubmit}>
+          <input
+            type="number"
+            name="inputValue"
+            defaultValue={localValue}
+            onChange={handleOnChange}
+            placeholder="enter value here"
+            ref={inputRef}
+          />
+          &nbsp;
+          <button type="submit">Submit</button>
+        </form>
+        <p>
+          The stored value is:{" "}
+          {isStorageValueLoading ? "data is loading..." : storageValue}
+        </p>
+      </div>
     </div>
   );
 };
 
-const mapStateToProps = ({ storage, contract }) => {
+const mapStateToProps = ({ storage, contract, greeting }) => {
   return {
     storageValue: storage.storageValue,
-    isLoading: storage.isLoading,
-    inputValue: storage.inputValue,
-    contract: contract.instances.SimpleStorage,
+    isStorageValueLoading: storage.isLoading,
+    welcomeMessage: greeting.message,
+    isGreetingMessagePending: greeting.isPending,
+    contract: contract.instances?.SimpleStorage,
   };
 };
 const mapDispatchToProps = (dispatch) => ({
-  set: (value) => dispatch(setValue(value)),
-  get: () => dispatch(getValue()),
+  setValue: (value) => dispatch(setValue(value)),
+  getValue: () => dispatch(getValue()),
+  readMessage: () => dispatch(readMessage()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

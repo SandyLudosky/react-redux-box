@@ -25,9 +25,8 @@ const connectBlockchain = (web3, contracts) =>
     try {
       const accounts = await web3.eth.getAccounts();
       const networkId = await web3.eth.net.getId();
-
       const instances = handleContractInstances(contracts, web3, networkId);
-      instances && console.log("connected to blockchain", instances);
+      instances && console.log("connected to blockchain");
       resolve({ web3, instances, accounts });
     } catch (err) {
       reject(err);
@@ -50,5 +49,4 @@ const createWeb3Middleware = (contract) => {
       }, console.error);
   };
 };
-
 export default (contract) => createWeb3Middleware(contract);
