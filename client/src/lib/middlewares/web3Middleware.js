@@ -39,7 +39,7 @@ const createWeb3Middleware = (contracts) => {
   }
   return ({ dispatch, getState }) => (next) => (action) => {
     connectWeb3
-      .then((web3) => connectBlockchain(web3, contracts), console.error)
+      .then((web3) => connectBlockchain(web3, contracts), handleErrors)
       .then(({ web3, instances, accounts }) => {
         if (typeof action === "function") {
           return action(dispatch, getState, {
@@ -49,7 +49,8 @@ const createWeb3Middleware = (contracts) => {
           });
         }
         return next(action);
-      }, console.error);
+      }, handleErrors);
   };
 };
-export default (contract) => createWeb3Middleware(contract);
+const Web3M = (contract) => createWeb3Middleware(contract);
+export default Web3M;

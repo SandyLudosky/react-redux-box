@@ -28,7 +28,7 @@ const App = ({
   };
 
   useEffect(() => getValue(), [getValue]);
-  useEffect(() => readMessage(), [getValue]);
+  useEffect(() => readMessage(), [readMessage]);
   return (
     <div className="App" style={{ margin: "100px auto 0 auto", width: "60%" }}>
       <div style={{ marginBottom: 50, borderBottom: "1px solid #ccc" }}>
