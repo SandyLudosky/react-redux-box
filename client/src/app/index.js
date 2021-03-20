@@ -83,9 +83,9 @@ const App = ({
 const mapStateToProps = ({ storage, greetings, contracts }) => {
   return {
     storageValue: storage.storageValue,
-    isStorageValueLoading: storage.isLoading,
-    welcomeMessage: greetings.message,
+    isStorageValueLoading: storage.isPending,
     isGreetingMessagePending: greetings.isPending,
+    welcomeMessage: greetings.message,
     instance: storage.instance,
     event: contracts.event,
   };
