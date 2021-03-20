@@ -6,7 +6,7 @@ import "./App.css";
 
 const App = ({
   instance,
-  isStorageValueLoading,
+  isStorageValuePending,
   isGreetingMessagePending,
   storageValue,
   welcomeMessage,
@@ -57,7 +57,7 @@ const App = ({
         </form>
         <p>
           The stored value is:{" "}
-          {isStorageValueLoading ? "data is loading..." : storageValue}
+          {isStorageValuePending ? "data is loading..." : storageValue}
         </p>
       </div>
       <p className="footer">
@@ -70,7 +70,7 @@ const App = ({
 const mapStateToProps = ({ storage, greetings, contracts }) => {
   return {
     storageValue: storage.storageValue,
-    isStorageValueLoading: storage.isPending,
+    isStorageValuePending: storage.isPending,
     isGreetingMessagePending: greetings.isPending,
     welcomeMessage: greetings.message,
     instance: storage.instance,

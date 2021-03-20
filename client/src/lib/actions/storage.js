@@ -31,7 +31,6 @@ const getValueError = (err) => {
     payload: { error: err },
   };
 };
-
 const getValuePending = () => {
   return {
     type: GET_VALUE_PENDING,

@@ -25,7 +25,6 @@ const writeMessageError = (error) => {
     payload: { isPending: false, error },
   };
 };
-
 const readMessagePending = () => {
   return {
     type: READ_MESSAGE_PENDING,
@@ -44,11 +43,12 @@ const readMessageError = (error) => {
     payload: { isPending: false, error },
   };
 };
-export const setMessage = (message) => {
+
+export const writeMessage = (message) => {
   return (dispatch, _, { instances: { Greetings }, admin }) => {
     dispatch(writeMessagePending());
     Greetings.methods
-      .set(message)
+      .write(message)
       .send({ from: admin })
       .then((result) => {
         dispatch(writeMessageSuccess(!result.status));
@@ -57,7 +57,6 @@ export const setMessage = (message) => {
       .catch(writeMessageError);
   };
 };
-
 export const readMessage = () => {
   return (dispatch, _, { instances: { Greetings } }) => {
     dispatch(readMessagePending());
