@@ -37,33 +37,17 @@ const App = ({
   useEffect(() => readMessage(), [readMessage]);
 
   return (
-    <div className="App" style={{ margin: "100px auto 0 auto", width: "60%" }}>
-      <div style={{ marginBottom: 50, borderBottom: "1px solid #ccc" }}>
-        <h1>
-          {isGreetingMessagePending
-            ? "Smart Contract Example with React &amp; Redux"
-            : welcomeMessage}
-        </h1>
-        <p>
-          {!!instance
-            ? "Your contracts compiled and migrated successfully "
-            : "Try to deploy your contract !"}
-          {!!instance && (
-            <>
-              <br />
-              <span>at address : {instance.options.address}</span>
-            </>
-          )}
-        </p>
-      </div>
-
-      <div style={{ marginTop: 50 }}>
+    <div className="App">
+      <h1>
+        {isGreetingMessagePending
+          ? "Smart Contract Example with React &amp; Redux"
+          : welcomeMessage}
+      </h1>
+      <div className="App">
         <p>Try changing the value stored on your smart contract :</p>
         <form onSubmit={handleOnSubmit}>
           <input
             type="number"
-            name="inputValue"
-            defaultValue={localValue}
             onChange={handleOnChange}
             placeholder="enter value here"
             ref={inputRef}
@@ -76,6 +60,9 @@ const App = ({
           {isStorageValueLoading ? "data is loading..." : storageValue}
         </p>
       </div>
+      <p className="footer">
+        {!!instance && `contract's address : ${instance.options.address}`}
+      </p>
     </div>
   );
 };
