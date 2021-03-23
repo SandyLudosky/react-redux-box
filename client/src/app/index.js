@@ -1,18 +1,14 @@
 import React, { useEffect, useState, useRef } from "react";
 import { connect } from "react-redux";
 import { setValue, getValue } from "../lib/actions/storage";
-import { readMessage } from "../lib/actions/greetings";
 import "./App.css";
 
 const App = ({
   instance,
-  isStorageValuePending,
-  isGreetingMessagePending,
+  isPending,
   storageValue,
-  welcomeMessage,
   setValue,
   getValue,
-  readMessage,
   event,
 }) => {
   const inputRef = useRef();
@@ -34,15 +30,10 @@ const App = ({
     }
   }, [event?.transactionHash, event?.event]);
   useEffect(() => getValue(), [getValue]);
-  useEffect(() => readMessage(), [readMessage]);
 
   return (
     <div className="App">
-      <h1>
-        {isGreetingMessagePending
-          ? "Smart Contract Example with React &amp; Redux"
-          : welcomeMessage}
-      </h1>
+      <h1>Smart Contract Example with React &amp; Redux</h1>
       <div className="App">
         <p>Try changing the value stored on your smart contract :</p>
         <form onSubmit={handleOnSubmit}>
@@ -56,8 +47,7 @@ const App = ({
           <button type="submit">Submit</button>
         </form>
         <p>
-          The stored value is:{" "}
-          {isStorageValuePending ? "data is loading..." : storageValue}
+          The stored value is: {isPending ? "data is loading..." : storageValue}
         </p>
       </div>
       <p className="footer">
@@ -67,12 +57,10 @@ const App = ({
   );
 };
 
-const mapStateToProps = ({ storage, greetings, contracts }) => {
+const mapStateToProps = ({ storage, contracts }) => {
   return {
     storageValue: storage.storageValue,
-    isStorageValuePending: storage.isPending,
-    isGreetingMessagePending: greetings.isPending,
-    welcomeMessage: greetings.message,
+    isPending: storage.isPending,
     instance: storage.instance,
     event: contracts.event,
   };
@@ -80,6 +68,5 @@ const mapStateToProps = ({ storage, greetings, contracts }) => {
 const mapDispatchToProps = (dispatch) => ({
   setValue: (value) => dispatch(setValue(value)),
   getValue: () => dispatch(getValue()),
-  readMessage: () => dispatch(readMessage()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(App);

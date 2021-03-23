@@ -1,7 +1,7 @@
 import { createStore, compose, applyMiddleware } from "redux";
 import rootReducer from "../reducers";
 import web3Middleware from "../middlewares/web3Middleware";
-import { SimpleStorage, Greetings } from "../../contracts";
+import SimpleStorage from "../../contracts/SimpleStorage.json";
 
 const composeEnhancer =
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -10,7 +10,7 @@ const composeEnhancer =
   }) || compose;
 
 const contractOptions = {
-  contracts: [SimpleStorage, Greetings] /* add contracts json here */,
+  contracts: [SimpleStorage] /* add contracts json in array */,
 };
 const middlewares = applyMiddleware(web3Middleware(contractOptions.contracts));
 export default createStore(rootReducer, composeEnhancer(middlewares));

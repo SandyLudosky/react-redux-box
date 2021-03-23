@@ -6,21 +6,19 @@ This box comes with everything you need to start using smart contracts from a re
 
 You will need to install Node.js and Truffle, as stated in the tutorial - see "Setting up the development environment".
 
-
-## To get this box ##
+## To get this box
 
 1. Create a new directory.
 
-2. In the new directory, run ```truffle unbox SandyLudosky/react-redux-box```. This should pull the box contents to the new local directory.
+2. In the new directory, run `truffle unbox SandyLudosky/react-redux-box`. This should pull the box contents to the new local directory.
 
-## After unboxing ##
+## After unboxing
 
 run :
 
 ```
-npm install
+npm run install-pkg
 ```
-
 
 In the main project directory:
 
@@ -28,17 +26,20 @@ In the main project directory:
 truffle develop
 ```
 
-Then, in the Truffle developer console: 
+Then, in the Truffle developer console:
+
 ```
 compile
 ```
 
 and then:
+
 ```
 migrate
 ```
 
 To test your smart contract(s), in truffle's developer console:
+
 ```
 test
 ```
@@ -58,5 +59,3 @@ You can test your DApp by entering the following:
 ```
 npm test
 ```
-
-
