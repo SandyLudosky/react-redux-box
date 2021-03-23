@@ -8,7 +8,7 @@ This box comes with everything you need to start using smart contracts from a re
 ## Features
 - addon : web3 middleware to enhance the redux store with smart contracts' instances and handle async data flow
 - the web3Middleware allows to connect to the blockchain first. then, dispatch actions
-- you can complete the `.env` file in the root folder of project to set environment variables. This file will be ignored by git, so it is suitable for API keys and other sensitive stuff. Refer to [dotenv](https://github.com/motdotla/dotenv) documentation for more details.
+- you can complete the `.env` file in the root folder to set environment variables. This file will be ignored by git, so it is suitable for API keys and other sensitive stuff. Refer to [dotenv](https://github.com/motdotla/dotenv) documentation for more details.
 
 ## Usage
 
@@ -63,6 +63,7 @@ To see your project in the browser, go to http://localhost:3000/
 ## Example :
 
 #### store.js : include contracts abi in contracts' array in the contractsOptions
+
 ```jsx
 import { createStore, compose, applyMiddleware } from "redux";
 import rootReducer from "../reducers";
@@ -77,12 +78,13 @@ const composeEnhancer =
 
 const contracts = [SimpleStorage] /* add contracts json here in array */
 
-const middlewares = applyMiddleware(web3Middleware(contractOptions.contracts)); /* pass array as param in the web3Middleware  */
+const middlewares = applyMiddleware(web3Middleware(contracts)); /* pass array as param in the web3Middleware  */
 export default createStore(rootReducer, composeEnhancer(middlewares));
 
 ```
 
 #### actions.js : get contracts instances before dispatching actions
+
 ```jsx
  /* get contracts' instance, then dispatch actions  */
 export const setValue = (value) => {
@@ -101,6 +103,6 @@ export const setValue = (value) => {
 
 ```
 
-#### For more projects: [Truffle box examples with web3Middleware](https://github.com/SandyLudosky/Truffle-examples)
+#### checkout projects examples : [Truffle box examples with web3Middleware](https://github.com/SandyLudosky/Truffle-examples)
 
 
