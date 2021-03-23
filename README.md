@@ -1,14 +1,14 @@
-# React Redux Box
+# React Redux Truffle Box
 
 <img src="./box-img-sm.png" alt="react-redux box image" title="react-redux_logo" width="300" />
 
-This box comes with everything you need to start using smart contracts from a react app, plus and implementation  redux library for state management.
+This box comes with everything you need to start using smart contracts from a react app, plus and implementation redux library for state management.
 
-You will need to install Node.js and Truffle, as stated in the tutorial - see "Setting up the development environment".
 
 ## Features
 - addon : web3 middleware to enhance the redux store with smart contracts' instances and handle async data flow
 - the web3Middleware allows to connect to the blockchain first. then, dispatch actions
+- you can complete the `.env` file in the root folder of project to set environment variables. This file will be ignored by git, so it is suitable for API keys and other sensitive stuff. Refer to [dotenv](https://github.com/motdotla/dotenv) documentation for more details.
 
 ## Usage
 
@@ -20,10 +20,10 @@ truffle unbox SandyLudosky/react-redux-box
 
 ## After unboxing
 
-run :
+to install all req'd dependencies both in the root and client projects, you can run :
 
 ```
-npm run install-pkg
+npm run install-pkg 
 ```
 
 In the main project directory:
@@ -75,7 +75,7 @@ const composeEnhancer =
     traceLimit: 25,
   }) || compose;
 
-const contracts = [SimpleStorage, Greetings] /* add contracts json here in array */
+const contracts = [SimpleStorage] /* add contracts json here in array */
 
 const middlewares = applyMiddleware(web3Middleware(contractOptions.contracts)); /* pass array as param in the web3Middleware  */
 export default createStore(rootReducer, composeEnhancer(middlewares));
