@@ -15,7 +15,7 @@ You will need to install Node.js and Truffle, as stated in the tutorial - see "S
 1. Create a new directory and run :
 
 ```
-`truffle unbox SandyLudosky/react-redux-box`
+truffle unbox SandyLudosky/react-redux-box
 ```
 
 ## After unboxing
@@ -63,7 +63,7 @@ To see your project in the browser, go to http://localhost:3000/
 ## Example :
 
 #### store.js : include contracts abi in contracts' array in the contractsOptions
-```
+```jsx
 import { createStore, compose, applyMiddleware } from "redux";
 import rootReducer from "../reducers";
 import web3Middleware from "../middlewares/web3Middleware";
@@ -75,7 +75,7 @@ const composeEnhancer =
     traceLimit: 25,
   }) || compose;
 
-const contracts: [SimpleStorage, Greetings] /* add contracts json here */
+const contracts = [SimpleStorage, Greetings] /* add contracts json here */
 
 const middlewares = applyMiddleware(web3Middleware(contractOptions.contracts));
 export default createStore(rootReducer, composeEnhancer(middlewares));
@@ -83,8 +83,7 @@ export default createStore(rootReducer, composeEnhancer(middlewares));
 ```
 
 #### actions.js : get contracts instances before dispatching actions
-```
-
+```jsx
 export const setValue = (value) => {
   return (dispatch, _, { instances: { SimpleStorage }, admin }) => {
     dispatch(setValuePending());
