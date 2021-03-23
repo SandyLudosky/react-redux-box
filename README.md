@@ -62,9 +62,7 @@ To see your project in the browser, go to http://localhost:3000/
 
 ## Example :
 
-### store.js : add web3Middleware middleware as sto
-
-### store.js : include contracts abi in contracts' array in the contractsOptions
+#### store.js : include contracts abi in contracts' array in the contractsOptions
 ```
 import { createStore, compose, applyMiddleware } from "redux";
 import rootReducer from "../reducers";
@@ -85,7 +83,7 @@ export default createStore(rootReducer, composeEnhancer(middlewares));
 
 ```
 
-### actions.js : get contracts instances before actions dispatch
+#### actions.js : get contracts instances before actions dispatch
 ```
 
 export const setValue = (value) => {
@@ -104,6 +102,6 @@ export const setValue = (value) => {
 
 ```
 
-## For more projects: [Truffle box example with web3Middleware](https://github.com/SandyLudosky/Truffle-examples)
+### For more projects: [Truffle box example with web3Middleware](https://github.com/SandyLudosky/Truffle-examples)
 
 
