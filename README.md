@@ -7,7 +7,7 @@ This box comes with everything you need to start using smart contracts from a re
 You will need to install Node.js and Truffle, as stated in the tutorial - see "Setting up the development environment".
 
 ## Features
-- we use a middleware as an addon to enhance the redux store with smart contracts' instances and handle async data flow
+- addon : web3 middleware to enhance the redux store with smart contracts' instances and handle async data flow
 - the web3Middleware allows to connect to the blockchain first. then, dispatch actions
 
 ## Usage
@@ -83,7 +83,7 @@ export default createStore(rootReducer, composeEnhancer(middlewares));
 
 ```
 
-#### actions.js : get contracts instances before actions dispatch
+#### actions.js : get contracts instances before dispatching actions
 ```
 
 export const setValue = (value) => {
