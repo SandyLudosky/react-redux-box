@@ -101,6 +101,6 @@ export const setValue = (value) => {
 
 ```
 
-### For more projects: [Truffle box example with web3Middleware](https://github.com/SandyLudosky/Truffle-examples)
+#### For more projects: [Truffle box examples with web3Middleware](https://github.com/SandyLudosky/Truffle-examples)
 
 
