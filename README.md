@@ -1,6 +1,6 @@
 # React Redux Box
 
-<img src="./box-img.png" alt="react-redux box image" title="react-redux_logo" width="300" />
+<img src="./box-img-sm.png" alt="react-redux box image" title="react-redux_logo" width="300" />
 
 This box comes with everything you need to start using smart contracts from a react app and redux library for state management
 
