@@ -67,7 +67,7 @@ To see your project in the browser, go to http://localhost:3000/
 import { createStore, compose, applyMiddleware } from "redux";
 import rootReducer from "../reducers";
 import web3Middleware from "../middlewares/web3Middleware";
-import { SimpleStorage, Greetings } from "../../contracts";
+import { SimpleStorage } from "../../contracts";  /* import compiled contracts' json here */
 
 const composeEnhancer =
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
@@ -75,17 +75,18 @@ const composeEnhancer =
     traceLimit: 25,
   }) || compose;
 
-const contracts = [SimpleStorage, Greetings] /* add contracts json here */
+const contracts = [SimpleStorage, Greetings] /* add contracts json here in array */
 
-const middlewares = applyMiddleware(web3Middleware(contractOptions.contracts));
+const middlewares = applyMiddleware(web3Middleware(contractOptions.contracts)); /* pass array as param in the web3Middleware  */
 export default createStore(rootReducer, composeEnhancer(middlewares));
 
 ```
 
 #### actions.js : get contracts instances before dispatching actions
 ```jsx
+ /* get contracts' instance, then dispatch actions  */
 export const setValue = (value) => {
-  return (dispatch, _, { instances: { SimpleStorage }, admin }) => {
+  return (dispatch, _, { instances: { SimpleStorage }, admin }) => {  
     dispatch(setValuePending());
     SimpleStorage.methods
       .set(value)
