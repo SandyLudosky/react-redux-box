@@ -1,6 +1,6 @@
 # React Redux Truffle Box (web3 middleware)
 
-![](https://byob.yarr.is/RubbaBoy/Example/time)
+![](https://byob.yarr.is/SandyLudosky/react-redux-box/time)
 
 
 <img src="./box-img-sm.png" alt="react-redux box image" title="react-redux_logo" width="300" />
