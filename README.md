@@ -7,10 +7,9 @@
 
 > This box comes with everything you need to get started with building large-scale decentralized applications. The box includes a truffle project, a react client app with redux to manage state along with the redux devTools to help debug. Checkout projects examples [here](https://github.com/SandyLudosky/Truffle-examples).
 
-
 ## Features
-- addon : web3 middleware to enhance the redux store with smart contracts' instances and handle async data flow. The web3Middleware allows to connect to the blockchain first. then, dispatch actions
-- you can complete the `.env` file in the root folder to set environment variables. This file will be ignored by git, so it is suitable for API keys (such as [Infura](https://infura.io/) secrets) and other sensitive stuff. Refer to [dotenv](https://github.com/motdotla/dotenv) documentation for more details.
+  - addon : web3 middleware to enhance the redux store with smart contracts' instances and handle async data flow. The web3Middleware allows to connect to the blockchain first. then, dispatch actions
+  - you can complete the `.env` file in the root folder to set environment variables. This file will be ignored by git, so it is suitable for API keys (such as [Infura](https://infura.io/) secrets) and other sensitive stuff. Refer to [dotenv](https://github.com/motdotla/dotenv) documentation for more details.
 
 ## Usage
 
@@ -62,7 +61,7 @@ To see your project in the browser, go to http://localhost:3000/
 
 ## Usage Example :
 
-#### client/src/lib/store.js : include contracts abi in contracts' array in the contractsOptions
+#### `client/src/lib/store.js` : include contracts abi in contracts' array in the contractsOptions
 
 ```jsx
 import { createStore, compose, applyMiddleware } from "redux";
@@ -83,7 +82,7 @@ export default createStore(rootReducer, composeEnhancer(middlewares));
 
 ```
 
-#### client/src/lib/actions.js : get contracts instances before dispatching actions
+#### `client/src/lib/actions.js` : get contracts instances before dispatching actions
 
 ```jsx
  /* get contracts' instance, then dispatch actions  */
