@@ -61,6 +61,6 @@ jobs:
         with: 
           NAME: Coverage
           LABEL: 'Coverage'
-          STATUS: ${{ steps.date.outputs.total_coverage }}
-          COLOR: 00EEFF
+          STATUS: ${{ steps.total_coverage.outputs.total_coverage }}
+          COLOR: 4DC726
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
