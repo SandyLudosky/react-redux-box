@@ -1,0 +1,37 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js ${{ matrix.noede-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+
+    - name: Install dependencies
+      run: npm install
+    
+    - name: Install truffle
+      run: npm install --save-dev truffle
+    
+    - name: Run the tests and generate coverage report
+      run: npx truffle test -- --coverage 
+      
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
