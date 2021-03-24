@@ -1,6 +1,6 @@
 # React Redux Truffle Box (web3 middleware)
 
-![Test Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/SandyLudosky/f983a2fd1fb32e4ce65f57f5fee0bd2b/raw/react-redux-box__heads_main.json)
+[![test coverage](https://codecov.io/gh/SandyLudosky/react-redux-box/branch/main/graph/badge.svg?token=HWHBG8MGQM)](https://codecov.io/gh/SandyLudosky/react-redux-box)
 
 
 <img src="./box-img-sm.png" alt="react-redux box image" title="react-redux_logo" width="300" />
