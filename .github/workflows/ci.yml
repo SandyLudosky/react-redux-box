@@ -52,13 +52,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
       - id: total_coverage
-        if: ${{ success() }}
-        run: echo "##[set-output name=data;] passing"
       - name: Coverage badge
         uses: SandyLudosky/BYOB@v1.2.0-SNAPSHOT
         with: 
           NAME: Coverage
           LABEL: 'Coverage'
-          STATUS: ${{ steps.total_coverage.outputs.data }}
+          STATUS: "passing"
           COLOR: 4DC726
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
