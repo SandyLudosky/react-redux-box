@@ -61,7 +61,7 @@ To see your project in the browser, go to http://localhost:3000/
 
 ## Usage Example :
 
-#### `client/src/lib/store.js` : include contracts abi in contracts' array in the contractsOptions
+#### `client/src/lib/store` : include contracts abi in contracts' array in the contractsOptions
 
 ```jsx
 import { createStore, compose, applyMiddleware } from "redux";
@@ -82,7 +82,7 @@ export default createStore(rootReducer, composeEnhancer(middlewares));
 
 ```
 
-#### `client/src/lib/actions.js` : get contracts instances before dispatching actions
+#### `client/src/lib/actions` : get contracts instances before dispatching actions
 
 ```jsx
  /* get contracts' instance, then dispatch actions  */
