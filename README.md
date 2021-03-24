@@ -1,6 +1,7 @@
 # React Redux Truffle Box (web3 middleware)
 
-![test coverage]https://github.com/SandyLudosky/react-redux-box/actions/workflows/ci.yml/badge.svg
+
+[![Test Coverage](https://github.com/SandyLudosky/react-redux-box/workflows/ci.yml/badge.svg)](https://github.com/SandyLudosky/react-redux-box/actions)
 
 <img src="./box-img-sm.png" alt="react-redux box image" title="react-redux_logo" width="300" />
 
