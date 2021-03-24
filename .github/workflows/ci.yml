@@ -36,15 +36,14 @@ jobs:
     - name: Run the tests and generate coverage report
       run: npm test -- --coverage
       
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1   
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
   badge_job:
     runs-on: ubuntu-latest
     steps:
       - id: date
         run: echo "##[set-output name=data;]$(date)"
+      - id: coverage
+        run: echo "##[set-output name=data;]$(tail -n -1 coverage_report |cut -f2  -d ')'|tr -d '\t')"
+     
       - name: Time badge
         uses: SandyLudosky/react-redux-box/BYOB@v1.2.0
         with:
@@ -54,8 +53,6 @@ jobs:
           COLOR: 00EEFF
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
-      - id: coverage
-        run: echo "##[set-output name=data;]$(tail -n -1 coverage_report |cut -f2  -d ')'|tr -d '\t')"
       - name: Coverage badge
         uses: SandyLudosky/react-redux-box/BYOB@v1.2.0
         with: 
