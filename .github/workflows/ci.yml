@@ -52,6 +52,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
       - id: total_coverage
+        run: echo "passing"
       - name: Coverage badge
         uses: SandyLudosky/BYOB@v1.2.0-SNAPSHOT
         with: 
