@@ -46,7 +46,7 @@ jobs:
       - id: date
         run: echo "##[set-output name=data;]$(date)"
       - name: Time badge
-        uses: SandyLudosky/BYOB@v1.2.0
+        uses: react-redux-box/BYOB@v1.2.0
         with:
           NAME: time
           LABEL: 'Updated at'
