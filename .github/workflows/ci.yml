@@ -57,7 +57,7 @@ jobs:
       - id: total_coverage
         run: echo "##[set-output name=data;]$(tail -n -1 coverage_report |cut -f2  -d ')'|tr -d '\t')"
       - name: Coverage badge
-        uses: SandyLudosky/react-redux-box/BYOB@v1.1.0
+        uses: SandyLudosky/react-redux-box/BYOB@v1.2.0
         with: 
           NAME: Coverage
           LABEL: 'Coverage'
