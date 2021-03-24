@@ -1,6 +1,6 @@
 # React Redux Truffle Box (web3 middleware)
 
-[![test coverage](https://codecov.io/gh/SandyLudosky/react-redux-box/branch/main/graph/badge.svg?token=HWHBG8MGQM)](https://codecov.io/gh/SandyLudosky/react-redux-box)
+![](https://byob.yarr.is/RubbaBoy/Example/time)
 
 
 <img src="./box-img-sm.png" alt="react-redux box image" title="react-redux_logo" width="300" />
