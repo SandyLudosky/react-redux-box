@@ -52,7 +52,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
       - id: total_coverage
-        run: echo "##[set-output name=data;]$(tail -n -1 coverage_report |cut -f2  -d ')'|tr -d '\t')"
+        run: echo "##[set-output name=data;]$(tail -n -1 npx truffle test  |cut -f2  -d ')'|tr -d '\t')"
       - name: Coverage badge
         uses: SandyLudosky/BYOB@v1.2.0-SNAPSHOT
         with: 
