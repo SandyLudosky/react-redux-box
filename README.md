@@ -1,5 +1,7 @@
 # React Redux Truffle Box (web3 middleware)
 
+![test coverage]https://github.com/SandyLudosky/react-redux-box/actions/workflows/ci.yml/badge.svg
+
 <img src="./box-img-sm.png" alt="react-redux box image" title="react-redux_logo" width="300" />
 
 This box comes with everything you need to get started with building large-scale decentralized applications. The box includes a truffle project, a react client app with redux to manage state along with the redux devTools to help debug. Checkout projects examples [here](https://github.com/SandyLudosky/Truffle-examples).
