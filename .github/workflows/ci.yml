@@ -54,13 +54,13 @@ jobs:
           COLOR: 00EEFF
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
-      - id: total_coverage
+      - id: coverage
         run: echo "##[set-output name=data;]$(tail -n -1 coverage_report |cut -f2  -d ')'|tr -d '\t')"
       - name: Coverage badge
         uses: SandyLudosky/react-redux-box/BYOB@v1.2.0
         with: 
           NAME: Coverage
           LABEL: 'Coverage'
-          STATUS: ${{ steps.total_coverage.outputs.data }}
+          STATUS: ${{ steps.coverage.outputs.data }}
           COLOR: 4DC726
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
