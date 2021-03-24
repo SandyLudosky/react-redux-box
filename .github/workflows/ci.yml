@@ -23,24 +23,32 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-
-  
-    
-  test:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v2 # Check out your repository
+        
     - name: Install dependencies
       run: npm install
     
     - name: Install truffle
       run: npm install --save-dev truffle
     - run: yarn # Install dependencies
-    - run: yarn test --coverage # Run test
-    - run: bash <(curl -s https://codecov.io/bash) # Upload to Codecov
+  
     - name: Run the tests and generate coverage report
       run: npx truffle test 
-      
+
+    - name: Upload coverage to Codecov (demo)
+      uses: ./
+      with:
+        files: ./coverage/calculator/coverage-final.json,./coverage/coverage-test/coverage-final.json
+        file: ./coverage/coverage-final.json
+        flags: demo
+        name: codecov-demo
+    - name: Upload coverage to Codecov (script)
+      uses: ./
+      with:
+          files: ./coverage/script/coverage-final.json
+          flags: script
+          name: codecov-script
+    
+ 
 #     - name: Run the tests and generate coverage report
 #       run: npm test -- --coverage
       
