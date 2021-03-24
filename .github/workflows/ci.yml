@@ -35,25 +35,32 @@ jobs:
       
     - name: Run the tests and generate coverage report
       run: npm test -- --coverage
-    - id: coverage
-      run: echo "##[set-output name=data;]$(tail -n -1 coverage_report |cut -f2  -d ')'|tr -d '\t')"
-    - id: date
-      run: echo "##[set-output name=data;]$(date)"
-    
-    - name: Time badge
-      uses: RubbaBoy/BYOB@v1.2.0-SNAPSHOT
+      
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1   
       with:
-        NAME: time
-        LABEL: 'Updated at'
-        STATUS: ${{ steps.date.outputs.data }}
-        COLOR: 00EEFF
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: Coverage badge
-      uses: SandyLudosky/react-redux-box/BYOB@v1.2.0
-      with: 
-        NAME: Coverage
-        LABEL: 'Coverage'
-        STATUS: ${{ steps.coverage.outputs.data }}
-        COLOR: 4DC726
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.CODECOV_TOKEN }}
+  badge_job:
+    runs-on: ubuntu-latest
+    steps:
+      - id: date
+        run: echo "##[set-output name=data;]$(date)"
+      - name: Time badge
+        uses: SandyLudosky/react-redux-box/BYOB@v1.2.0
+        with:
+          NAME: time
+          LABEL: 'Updated at'
+          STATUS: ${{ steps.date.outputs.data }}
+          COLOR: 00EEFF
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
+      - id: total_coverage
+        run: echo "##[set-output name=data;]$(tail -n -1 coverage_report |cut -f2  -d ')'|tr -d '\t')"
+      - name: Coverage badge
+        uses: SandyLudosky/react-redux-box/BYOB@v1.1.0
+        with: 
+          NAME: Coverage
+          LABEL: 'Coverage'
+          STATUS: ${{ steps.total_coverage.outputs.data }}
+          COLOR: 4DC726
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
