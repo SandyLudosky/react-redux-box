@@ -52,7 +52,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     
       - id: total_coverage
-        run: echo "##[set-output name=data;]$(tail -n -1 npx truffle test  |cut -f2  -d ')'|tr -d '\t')"
+        if: ${{ success() }}
+        run: echo "##[set-output name=data;] passing"
       - name: Coverage badge
         uses: SandyLudosky/BYOB@v1.2.0-SNAPSHOT
         with: 
